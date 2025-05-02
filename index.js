@@ -24,7 +24,7 @@
 // app.use(errorMiddleware);
 // app.listen(PORT || 5000, () => console.log(`Running on http://localhost:${PORT || 5000}/api`));
 
-const express = require("express");
+import express from "express";
 const app = express();
 
 const port = process.env.PORT || 8080;
