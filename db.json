@@ -1,0 +1,150 @@
+{
+    "users": [
+        {
+            "email": "admin@gmail.com",
+            "password": "Admin123!"
+        }
+    ],
+    "articles": [
+        {
+            "name": "PS5 Pro",
+            "price": 599.99,
+            "description": "La consola más potente de PlayStation, con gráficos 4K, ray tracing y velocidades de carga ultrarrápidas. Incluye el innovador control DualSense con retroalimentación háptica y gatillos adaptativos para una inmersión sin precedentes.",
+            "image": "https://res.cloudinary.com/dygwpgeq9/image/upload/v1746146271/article_img_001_lxiukn.webp",
+            "categories": ["680b20afc0d13ce41d4f9ce8"]
+        },
+        {
+            "name": "PS4 Blanca",
+            "price": 299.99,
+            "description": "Consola PlayStation 4 en elegante color blanco, con 1TB de almacenamiento y rendimiento optimizado. Perfecta para disfrutar de una extensa biblioteca de juegos icónicos y entretenimiento multimedia.",
+            "image": "https://res.cloudinary.com/dygwpgeq9/image/upload/v1746146268/article_img_004_nbt68j.webp",
+            "categories": ["680b20afc0d13ce41d4f9ce8"]
+        },
+        {
+            "name": "Nintendo Switch",
+            "price": 299.99,
+            "description": "Versátil consola híbrida que permite jugar en modo portátil o TV. Incluye Joy-Con desmontables y una pantalla táctil HD de 6.2 pulgadas para disfrutar de exclusivos títulos de Nintendo donde quieras.",
+            "image": "https://res.cloudinary.com/dygwpgeq9/image/upload/v1746146268/article_img_005_aocufq.webp",
+            "categories": ["680b20afc0d13ce41d4f9ce8"]
+        },
+        {
+            "name": "PS1",
+            "price": 149.99,
+            "description": "Consola clásica PlayStation que revolucionó la industria del gaming. Incluye un control original, cables de conexión y memoria. Perfecta para coleccionistas y amantes de los juegos retro.",
+            "image": "https://res.cloudinary.com/dygwpgeq9/image/upload/v1746165265/ps1_img_01_qdykmi.webp",
+            "categories": ["680b20afc0d13ce41d4f9ce8"]
+        },
+        {
+            "name": "XBOX Series S",
+            "price": 299.99,
+            "description": "Consola digital next-gen de Microsoft con resolución 1440p y hasta 120 FPS. SSD ultrarrápido, Ray Tracing y acceso a Xbox Game Pass. Diseño compacto y elegante ideal para cualquier setup.",
+            "image": "https://res.cloudinary.com/dygwpgeq9/image/upload/v1746165265/xboxs_zty7sk.webp",
+            "categories": ["680b20afc0d13ce41d4f9ce8"]
+        },
+        {
+            "name": "Mando PS4",
+            "price": 59.99,
+            "description": "Control DualShock 4 oficial para PlayStation 4 con panel táctil, barra de luz LED y botones ergonómicos. Batería recargable incluida para horas de juego ininterrumpido.",
+            "image": "https://res.cloudinary.com/dygwpgeq9/image/upload/v1746146270/article_img_002_i8h7y2.webp",
+            "categories": ["680b20afc0d13ce41d4f9ce8", "680b209fc0d13ce41d4f9ce4"]
+        },
+        {
+            "name": "Mando XBOX",
+            "price": 64.99,
+            "description": "Control inalámbrico Xbox Series X|S con diseño modernizado, botones dedicados para compartir contenido y agarre texturizado. Compatible con Xbox One y PC Windows 10.",
+            "image": "https://res.cloudinary.com/dygwpgeq9/image/upload/v1746146270/article_img_003_wb4jgw.webp",
+            "categories": ["680b20afc0d13ce41d4f9ce8", "680b209fc0d13ce41d4f9ce4"]
+        },
+        {
+            "name": "Baby Yoda",
+            "price": 29.99,
+            "description": "Adorable figura coleccionable de Grogu, también conocido como Baby Yoda, de la serie The Mandalorian. Fabricada con materiales de alta calidad y detalles precisos que capturan la ternura del personaje.",
+            "image": "https://res.cloudinary.com/dygwpgeq9/image/upload/v1746146268/article_img_011_cdiv1y.webp",
+            "categories": ["680b20a7c0d13ce41d4f9ce6"]
+        },
+        {
+            "name": "Figura Stormtrooper Blanco",
+            "price": 89.99,
+            "description": "Figura de acción premium de Stormtrooper Imperial con armadura blanca clásica. Incluye accesorios intercambiables y base de exhibición para una presentación elegante.",
+            "image": "https://res.cloudinary.com/dygwpgeq9/image/upload/v1746146268/article_img_010_kobak0.webp",
+            "categories": ["680b20a7c0d13ce41d4f9ce6"]
+        },
+        {
+            "name": "Figura LEGO Darth Vader",
+            "price": 24.99,
+            "description": "Minifigura LEGO del icónico Darth Vader con capa de tela y sable de luz. Parte de la colección Star Wars, perfecta para fans y coleccionistas.",
+            "image": "https://res.cloudinary.com/dygwpgeq9/image/upload/v1746146268/article_img_008_nl6nha.webp",
+            "categories": ["680b20a7c0d13ce41d4f9ce6"]
+        },
+        {
+            "name": "LEGO Star Wars",
+            "price": 149.99,
+            "description": "Set LEGO Star Wars con múltiples minifiguras y vehículos icónicos de la saga. Incluye piezas detalladas para construir escenas épicas del universo Star Wars.",
+            "image": "https://res.cloudinary.com/dygwpgeq9/image/upload/v1746146268/article_img_006_d1e9ru.webp",
+            "categories": ["680b20a7c0d13ce41d4f9ce6"]
+        },
+        {
+            "name": "Figura Stormtrooper Blanco",
+            "price": 79.99,
+            "description": "Figura de Stormtrooper a escala 1/6 con detalles precisos de la armadura imperial. Articulaciones múltiples para poses dinámicas y acabado profesional.",
+            "image": "https://res.cloudinary.com/dygwpgeq9/image/upload/v1746146268/article_img_007_oturpk.webp",
+            "categories": ["680b20a7c0d13ce41d4f9ce6"]
+        },
+        {
+            "name": "Casco Stormtrooper Rojo",
+            "price": 119.99,
+            "description": "Réplica coleccionable del casco de Stormtrooper en edición especial roja. Fabricado con materiales de alta calidad y detalles auténticos de la saga Star Wars.",
+            "image": "https://res.cloudinary.com/dygwpgeq9/image/upload/v1746146268/article_img_009_ms9ypd.webp",
+            "categories": ["680b20a7c0d13ce41d4f9ce6"]
+        },
+        {
+            "name": "Figura Siegmeyer of Catarina",
+            "price": 89.99,
+            "description": "Figura detallada del querido personaje Siegmeyer de Catarina de Dark Souls. Captura perfectamente su distintiva armadura de cebolla y pose característica.",
+            "image": "https://res.cloudinary.com/dygwpgeq9/image/upload/v1746146267/article_img_016_gt6gjk.webp",
+            "categories": ["680b20afc0d13ce41d4f9ce8"]
+        },
+        {
+            "name": "Figura Asuka",
+            "price": 79.99,
+            "description": "Figura de alta calidad de Asuka Langley de Evangelion en su icónico traje de piloto. Incluye base personalizada y accesorios intercambiables.",
+            "image": "https://res.cloudinary.com/dygwpgeq9/image/upload/v1746146267/article_img_017_p0gryq.webp",
+            "categories": ["680b20afc0d13ce41d4f9ce8"]
+        },
+        {
+            "name": "Tenis Nike",
+            "price": 129.99,
+            "description": "Zapatillas deportivas Nike con tecnología de amortiguación Air y diseño moderno. Perfectas para uso diario y actividades deportivas, combinando estilo y comodidad.",
+            "image": "https://res.cloudinary.com/dygwpgeq9/image/upload/v1746146267/article_img_014_ctwufc.webp",
+            "categories": ["680b20afc0d13ce41d4f9ce8"]
+        },
+        {
+            "name": "Jordan Air",
+            "price": 179.99,
+            "description": "Zapatillas Air Jordan clásicas con diseño retro y tecnología Air visible. Confeccionadas en cuero premium con detalles icónicos de la marca Jordan.",
+            "image": "https://res.cloudinary.com/dygwpgeq9/image/upload/v1746146267/article_img_013_knmd1z.webp",
+            "categories": ["680b20afc0d13ce41d4f9ce8"]
+        },
+        {
+            "name": "Jordans",
+            "price": 159.99,
+            "description": "Zapatillas Jordan de edición especial con combinación única de colores y materiales premium. Diseño versátil para uso casual y deportivo.",
+            "image": "https://res.cloudinary.com/dygwpgeq9/image/upload/v1746146267/article_img_012_lfn0kh.webp",
+            "categories": ["680b20afc0d13ce41d4f9ce8"]
+        },
+        {
+            "name": "Tenis adidas",
+            "price": 119.99,
+            "description": "Zapatillas adidas con tecnología Boost para máxima comodidad y respuesta energética. Diseño contemporáneo ideal para el estilo de vida urbano.",
+            "image": "https://res.cloudinary.com/dygwpgeq9/image/upload/v1746146267/article_img_015_gvbu8h.webp",
+            "categories": ["680b20afc0d13ce41d4f9ce8"]
+        },
+        {
+            "name": "Figura anime",
+            "price": 69.99,
+            "description": "Figura coleccionable de anime de alta calidad con detalles meticulosos y acabados premium. Incluye base decorativa y accesorios intercambiables para múltiples poses.",
+            "image": "https://res.cloudinary.com/dygwpgeq9/image/upload/v1746165265/anime_img_01_qlgbic.webp",
+            "categories": ["680b20afc0d13ce41d4f9ce8"]
+        }
+    ]
+}
