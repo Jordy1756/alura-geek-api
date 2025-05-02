@@ -4,368 +4,243 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>AluraGeek API</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-        <style>
-            :root {
-                --primary-color: #2a7ae4;
-                --secondary-color: #eaf2fd;
-                --dark-color: #464646;
-                --light-color: #f5f5f5;
-                --success-color: #28a745;
-                --danger-color: #dc3545;
-            }
-
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            }
-
-            body {
-                background-color: var(--light-color);
-                color: var(--dark-color);
-                line-height: 1.6;
-            }
-
-            header {
-                background-color: var(--primary-color);
-                color: white;
-                padding: 1rem 0;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            }
-
-            .container {
-                max-width: 1200px;
-                margin: 0 auto;
-                padding: 0 1rem;
-            }
-
-            .header-content {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-
-            .logo {
-                font-size: 1.5rem;
-                font-weight: bold;
-                display: flex;
-                align-items: center;
-            }
-
-            .logo i {
-                margin-right: 0.5rem;
-            }
-
-            main {
-                padding: 2rem 0;
-            }
-
-            .hero {
-                background-color: white;
-                padding: 2rem;
-                border-radius: 8px;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-                margin-bottom: 2rem;
-            }
-
-            h1 {
-                font-size: 2rem;
-                margin-bottom: 1rem;
-                color: var(--primary-color);
-            }
-
-            .description {
-                margin-bottom: 1.5rem;
-            }
-
-            .endpoints {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-                gap: 1.5rem;
-                margin-bottom: 2rem;
-            }
-
-            .endpoint-card {
-                background-color: white;
-                border-radius: 8px;
-                padding: 1.5rem;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-                transition: transform 0.3s ease;
-            }
-
-            .endpoint-card:hover {
-                transform: translateY(-5px);
-            }
-
-            .endpoint-header {
-                display: flex;
-                align-items: center;
-                margin-bottom: 1rem;
-            }
-
-            .endpoint-method {
-                font-size: 0.9rem;
-                font-weight: bold;
-                padding: 0.25rem 0.5rem;
-                border-radius: 4px;
-                margin-right: 0.5rem;
-            }
-
-            .get {
-                background-color: #e3f2fd;
-                color: #0d47a1;
-            }
-
-            .post {
-                background-color: #e8f5e9;
-                color: #1b5e20;
-            }
-
-            .put {
-                background-color: #fff8e1;
-                color: #ff6f00;
-            }
-
-            .delete {
-                background-color: #ffebee;
-                color: #b71c1c;
-            }
-
-            .endpoint-path {
-                font-family: "Courier New", monospace;
-                font-weight: bold;
-            }
-
-            .endpoint-description {
-                margin-bottom: 1rem;
-                font-size: 0.95rem;
-            }
-
-            .auth-required {
-                font-size: 0.8rem;
-                display: flex;
-                align-items: center;
-                color: #666;
-            }
-
-            .auth-required i {
-                margin-right: 0.25rem;
-            }
-
-            .example-section {
-                background-color: white;
-                border-radius: 8px;
-                padding: 1.5rem;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-                margin-bottom: 2rem;
-            }
-
-            .example-section h2 {
-                margin-bottom: 1rem;
-                color: var(--primary-color);
-            }
-
-            .code-block {
-                background-color: #f8f9fa;
-                border: 1px solid #e9ecef;
-                border-radius: 4px;
-                padding: 1rem;
-                font-family: "Courier New", monospace;
-                overflow-x: auto;
-                margin-bottom: 1rem;
-            }
-
-            .setup-steps {
-                margin-top: 2rem;
-            }
-
-            .setup-steps h3 {
-                margin-bottom: 1rem;
-                color: var(--primary-color);
-            }
-
-            .setup-steps ol {
-                margin-left: 1.5rem;
-            }
-
-            .setup-steps li {
-                margin-bottom: 0.5rem;
-            }
-
-            .badge {
-                display: inline-block;
-                padding: 0.25rem 0.5rem;
-                font-size: 0.75rem;
-                font-weight: bold;
-                border-radius: 4px;
-                margin-left: 0.5rem;
-            }
-
-            .badge-primary {
-                background-color: var(--primary-color);
-                color: white;
-            }
-
-            footer {
-                background-color: var(--secondary-color);
-                padding: 2rem 0;
-                text-align: center;
-            }
-
-            .footer-content p {
-                margin-bottom: 1rem;
-            }
-
-            @media (max-width: 768px) {
-                .endpoints {
-                    grid-template-columns: 1fr;
-                }
-            }
-        </style>
+        <link rel="icon" href="./assets/images/logo.ico" type="image/svg+xml" />
+        <link rel="stylesheet" href="./css/reset.css" />
+        <link rel="stylesheet" href="./css/styles.css" />
     </head>
     <body>
-        <header>
-            <div class="container">
-                <div class="header-content">
-                    <div class="logo">
-                        <i class="fas fa-store"></i>
-                        AluraGeek API
-                    </div>
-                </div>
-            </div>
-        </header>
-
-        <main class="container">
-            <section class="hero">
-                <h1>Bienvenido a AluraGeek API</h1>
-                <p class="description">
-                    Esta API proporciona acceso a los datos de productos, categorías y usuarios de la tienda AluraGeek.
-                    Utiliza Express.js con MongoDB para ofrecer una interfaz RESTful para gestionar el contenido de la
-                    tienda.
-                </p>
-            </section>
-
-            <h2>Endpoints Disponibles</h2>
-            <section class="endpoints">
-                <div class="endpoint-card">
-                    <div class="endpoint-header">
-                        <span class="endpoint-method get">GET</span>
-                        <span class="endpoint-path">/api/article/get-some-articles</span>
-                    </div>
-                    <p class="endpoint-description">
-                        Obtiene una selección aleatoria de artículos agrupados por categorías.
+        <div class="root">
+            <header>
+                <nav>
+                    <a href="#" target="_blank">
+                        <img src="./assets/images/logo.svg" alt="AluraGeek Logo" />
+                    </a>
+                </nav>
+            </header>
+            <main>
+                <section class="hero__section">
+                    <h1>Bienvenido a AluraGeek API</h1>
+                    <p>
+                        Esta API proporciona acceso a los datos de productos, categorías y usuarios de la tienda
+                        AluraGeek. Utiliza Express.js con MongoDB para ofrecer una interfaz RESTful para gestionar el
+                        contenido de la tienda.
                     </p>
-                    <div class="auth-required"><i class="fas fa-unlock"></i> No requiere autenticación</div>
-                </div>
-
-                <div class="endpoint-card">
-                    <div class="endpoint-header">
-                        <span class="endpoint-method get">GET</span>
-                        <span class="endpoint-path">/api/article/search-articles</span>
+                </section>
+                <section class="endpoints__section">
+                    <h2>Endpoints Disponibles</h2>
+                    <div>
+                        <article>
+                            <header>
+                                <span class="endpoint__method get">GET</span>
+                                <span class="endpoint__path">/api/article/get-some-articles</span>
+                            </header>
+                            <section>
+                                <p>Obtiene una selección aleatoria de artículos agrupados por categorías.</p>
+                                <div>
+                                    <h4>Parámetros de consulta:</h4>
+                                    <code>categoryLimit</code>: Número de categorías a devolver<br />
+                                    <code>articlesLimit</code>: Número de artículos por categoría
+                                </div>
+                            </section>
+                            <footer><span class="icon__unlock"></span> No requiere autenticación</footer>
+                        </article>
+                        <article>
+                            <header>
+                                <span class="endpoint__method get">GET</span>
+                                <span class="endpoint__path">/api/article/search-articles</span>
+                            </header>
+                            <section>
+                                <p>Busca artículos por nombre con coincidencia parcial.</p>
+                                <div>
+                                    <h4>Parámetros de consulta:</h4>
+                                    <code>query</code>: Texto a buscar<br />
+                                    <code>articlesLimit</code>: Límite de resultados a devolver
+                                </div>
+                            </section>
+                            <footer><span class="icon__unlock"></span> No requiere autenticación</footer>
+                        </article>
+                        <article>
+                            <header>
+                                <span class="endpoint__method post">POST</span>
+                                <span class="endpoint__path">/api/user/register-user</span>
+                            </header>
+                            <section>
+                                <p>Registra un nuevo usuario en el sistema.</p>
+                                <div>
+                                    <h4>Cuerpo de la solicitud:</h4>
+                                    <pre><code>{
+  <span class="key">"email"</span>: <span class="string">"admin@gmail.com"</span>,
+  <span class="key">"password"</span>: <span class="string">"Admin123!"</span>
+}</code></pre>
+                                </div>
+                            </section>
+                            <footer><span class="icon__unlock"></span> No requiere autenticación</footer>
+                        </article>
+                        <article>
+                            <header>
+                                <span class="endpoint__method post">POST</span>
+                                <span class="endpoint__path">/api/user/login-user</span>
+                            </header>
+                            <section>
+                                <p>Inicia sesión y obtiene tokens de autenticación.</p>
+                                <div>
+                                    <h4>Cuerpo de la solicitud:</h4>
+                                    <pre><code>{
+  <span class="key">"email"</span>: <span class="string">"admin@gmail.com"</span>,
+  <span class="key">"password"</span>: <span class="string">"Admin123!"</span>
+}</code></pre>
+                                </div>
+                            </section>
+                            <footer><span class="icon__unlock"></span> No requiere autenticación</footer>
+                        </article>
+                        <article>
+                            <header>
+                                <span class="endpoint__method post">POST</span>
+                                <span class="endpoint__path">/api/article/insert-article</span>
+                            </header>
+                            <section>
+                                <p>Crea un nuevo artículo en la base de datos.</p>
+                                <div>
+                                    <h4>Cuerpo de la solicitud:</h4>
+                                    <pre><code>{
+  <span class="key">"name"</span>: <span class="string">"Nombre del artículo"</span>,
+  <span class="key">"price"</span>: <span class="number">299.99</span>,
+  <span class="key">"description"</span>: <span class="string">"Descripción del artículo"</span>,
+  <span class="key">"image"</span>: <span class="string">"https://ejemplo.com/imagen.jpg"</span>,
+  <span class="key">"categories"</span>: [<span class="string">"ID_categoría1"</span>, <span class="string">"ID_categoría2"</span>]
+}</code></pre>
+                                </div>
+                            </section>
+                            <footer><span class="icon__lock"></span> Requiere autenticación</footer>
+                        </article>
+                        <article>
+                            <header>
+                                <span class="endpoint__method put">PUT</span>
+                                <span class="endpoint__path">/api/article/update-article/:articleId</span>
+                            </header>
+                            <section>
+                                <p>Actualiza un artículo existente por su ID.</p>
+                                <div>
+                                    <h4>Cuerpo de la solicitud:</h4>
+                                    <pre><code>{
+  <span class="key">"name"</span>: <span class="string">"Nombre actualizado"</span>,
+  <span class="key">"price"</span>: <span class="number">349.99</span>,
+  <span class="key">"description"</span>: <span class="string">"Nueva descripción"</span>,
+  <span class="key">"image"</span>: <span class="string">"https://ejemplo.com/nueva-imagen.jpg"</span>,
+  <span class="key">"categories"</span>: [<span class="string">"ID_categoría1"</span>, <span class="string">"ID_categoría2"</span>]
+}</code></pre>
+                                </div>
+                            </section>
+                            <footer><span class="icon__lock"></span> Requiere autenticación</footer>
+                        </article>
+                        <article>
+                            <header>
+                                <span class="endpoint__method delete">DELETE</span>
+                                <span class="endpoint__path">/api/article/delete-article/:articleId</span>
+                            </header>
+                            <section>
+                                <p>Elimina un artículo existente por su ID.</p>
+                                <div class="path-params">
+                                    <h4>Parámetros de ruta:</h4>
+                                    <code>articleId</code>: ID del artículo a eliminar
+                                </div>
+                            </section>
+                            <footer><span class="icon__lock"></span> Requiere autenticación</footer>
+                        </article>
+                        <article>
+                            <header>
+                                <span class="endpoint__method get">GET</span>
+                                <span class="endpoint__path">/api/article/get-recommended-articles/:articleId</span>
+                            </header>
+                            <section>
+                                <p>Obtiene artículos recomendados basados en un artículo específico.</p>
+                                <div>
+                                    <h4>Parámetros de consulta:</h4>
+                                    <code>categoryLimit</code>: Número de categorías a considerar<br />
+                                    <code>articlesLimit</code>: Número de artículos por categoría
+                                </div>
+                            </section>
+                            <footer><span class="icon__unlock"></span> No requiere autenticación</footer>
+                        </article>
+                        <article>
+                            <header>
+                                <span class="endpoint__method post">POST</span>
+                                <span class="endpoint__path">/api/comment/insert-comment</span>
+                            </header>
+                            <section>
+                                <p>Añade un nuevo comentario.</p>
+                                <div>
+                                    <h4>Cuerpo de la solicitud:</h4>
+                                    <pre><code>{
+  <span class="key">"name"</span>: <span class="string">"Nombre de usuario"</span>,
+  <span class="key">"message"</span>: <span class="string">"Mensaje del comentario"</span>
+}</code></pre>
+                                </div>
+                            </section>
+                            <footer><span class="icon__unlock"></span> No requiere autenticación</footer>
+                        </article>
                     </div>
-                    <p class="endpoint-description">Busca artículos por nombre con coincidencia parcial.</p>
-                    <div class="auth-required"><i class="fas fa-unlock"></i> No requiere autenticación</div>
-                </div>
+                </section>
 
-                <div class="endpoint-card">
-                    <div class="endpoint-header">
-                        <span class="endpoint-method post">POST</span>
-                        <span class="endpoint-path">/api/user/register-user</span>
+                <section class="example__section">
+                    <h2>Ejemplo de Uso</h2>
+                    <div>
+                        <p>Este es un ejemplo de cómo usar la API para obtener artículos:</p>
+                        <pre><code><span class="function">fetch</span>(<span class="string">'http://localhost:5000/api/article/get-some-articles?categoryLimit=2&articlesLimit=4'</span>)
+  .<span class="function">then</span>(<span class="variable">response</span> => <span class="variable">response</span>.<span class="function">json</span>())
+  .<span class="function">then</span>(<span class="variable">data</span> => <span class="function">console.log</span>(<span class="variable">data</span>))
+  .<span class="function">catch</span>(<span class="variable">error</span> => <span class="function">console.error</span>(<span class="string">'Error:'</span>, <span class="variable">error</span>));</code></pre>
                     </div>
-                    <p class="endpoint-description">Registra un nuevo usuario en el sistema.</p>
-                    <div class="auth-required"><i class="fas fa-unlock"></i> No requiere autenticación</div>
-                </div>
-
-                <div class="endpoint-card">
-                    <div class="endpoint-header">
-                        <span class="endpoint-method post">POST</span>
-                        <span class="endpoint-path">/api/user/login-user</span>
+                    <div>
+                        <p>Ejemplo de respuesta:</p>
+                        <pre><code>{
+  <span class="key">"data"</span>: [
+    {
+      <span class="key">"category"</span>: {
+        <span class="key">"id"</span>: <span class="string">"680b20afc0d13ce41d4f9ce8"</span>,
+        <span class="key">"name"</span>: <span class="string">"Consolas"</span>
+      },
+      <span class="key">"articles"</span>: [
+        {
+          <span class="key">"_id"</span>: <span class="string">"680b20afc0d13ce41d4f9ce9"</span>,
+          <span class="key">"name"</span>: <span class="string">"PS5 Pro"</span>,
+          <span class="key">"price"</span>: <span class="number">599.99</span>,
+          <span class="key">"description"</span>: <span class="string">"La consola más potente de PlayStation..."</span>,
+          <span class="key">"image"</span>: <span class="string">"https://res.cloudinary.com/..."</span>
+        }
+        <span class="comment">// Más artículos...</span>
+      ]
+    }
+  ]
+}</code></pre>
                     </div>
-                    <p class="endpoint-description">Inicia sesión y obtiene tokens de autenticación.</p>
-                    <div class="auth-required"><i class="fas fa-unlock"></i> No requiere autenticación</div>
-                </div>
-
-                <div class="endpoint-card">
-                    <div class="endpoint-header">
-                        <span class="endpoint-method post">POST</span>
-                        <span class="endpoint-path">/api/article/insert-article</span>
-                    </div>
-                    <p class="endpoint-description">Crea un nuevo artículo en la base de datos.</p>
-                    <div class="auth-required"><i class="fas fa-lock"></i> Requiere autenticación</div>
-                </div>
-
-                <div class="endpoint-card">
-                    <div class="endpoint-header">
-                        <span class="endpoint-method put">PUT</span>
-                        <span class="endpoint-path">/api/article/update-article/:articleId</span>
-                    </div>
-                    <p class="endpoint-description">Actualiza un artículo existente por su ID.</p>
-                    <div class="auth-required"><i class="fas fa-lock"></i> Requiere autenticación</div>
-                </div>
-
-                <div class="endpoint-card">
-                    <div class="endpoint-header">
-                        <span class="endpoint-method delete">DELETE</span>
-                        <span class="endpoint-path">/api/article/delete-article/:articleId</span>
-                    </div>
-                    <p class="endpoint-description">Elimina un artículo existente por su ID.</p>
-                    <div class="auth-required"><i class="fas fa-lock"></i> Requiere autenticación</div>
-                </div>
-
-                <div class="endpoint-card">
-                    <div class="endpoint-header">
-                        <span class="endpoint-method post">POST</span>
-                        <span class="endpoint-path">/api/comment/insert-comment</span>
-                    </div>
-                    <p class="endpoint-description">Añade un nuevo comentario.</p>
-                    <div class="auth-required"><i class="fas fa-unlock"></i> No requiere autenticación</div>
-                </div>
-            </section>
-
-            <section class="example-section">
-                <h2>Ejemplo de Uso</h2>
-                <p>Este es un ejemplo de cómo usar la API para obtener artículos:</p>
-                <div class="code-block">
-                    fetch('http://localhost:5000/api/article/get-some-articles?categoryLimit=2&articlesLimit=4')
-                    .then(response => response.json()) .then(data => console.log(data)) .catch(error =>
-                    console.error('Error:', error));
-                </div>
-
-                <p>Ejemplo de respuesta:</p>
-                <pre class="code-block">
-                    { "data": [ { "category": { "id": "680b20afc0d13ce41d4f9ce8", "name": "Consolas" }, "articles": [ {
-                    "_id": "680b20afc0d13ce41d4f9ce9", "name": "PS5 Pro", "price": 599.99, "description": "La consola
-                    más potente de PlayStation...", "image": "https://res.cloudinary.com/..." }, // Más artículos... ] }
-                    ] }
-                </pre>
-
-                <div class="setup-steps">
-                    <h3>Configuración del Entorno</h3>
+                </section>
+                <section class="env__section">
+                    <h2>Configuración del Entorno</h2>
                     <ol>
-                        <li>Clona el repositorio</li>
-                        <li>Instala las dependencias con <code>npm install</code></li>
+                        <li><p>Clona el repositorio</p></li>
                         <li>
-                            Crea un archivo <code>.env</code> con las siguientes variables:
-                            <div class="code-block">
-                                CONNECTION_STRING_DB=mongodb://localhost:27017/alurageek PORT=5000
-                                SECRET_KEY=your_secret_key REFRESH_SECRET_KEY=your_refresh_key SALT_ROUNDS=10
-                            </div>
+                            <p>Instala las dependencias con <code>npm install</code></p>
                         </li>
-                        <li>Inicia el servidor con <code>npm run dev</code></li>
+                        <li class="env_item">
+                            <p>Crea un archivo <code>.env</code> con las siguientes variables:</p>
+                            <pre><code><span class="variable">CONNECTION_STRING_DB</span>=<span class="string">your_mongodb_url</span>
+<span class="variable">PORT</span>=<span class="number">5000</span>
+<span class="variable">SECRET_KEY</span>=<span class="string">your_secret_key</span>
+<span class="variable">REFRESH_SECRET_KEY</span>=<span class="string">your_refresh_key</span>
+<span class="variable">SALT_ROUNDS</span>=<span class="number">10</span></code></pre>
+                        </li>
+                        <li>
+                            <p>Inicia el servidor con <code>npm run dev</code></p>
+                        </li>
                     </ol>
+                </section>
+            </main>
+            <footer>
+                <div>
+                    <p>&copy; 2025 Yordi Castro Rojas - Alura Geek API</p>
                 </div>
-            </section>
-        </main>
-
-        <footer>
-            <div class="container">
-                <div class="footer-content">
-                    <p>&copy; 2025 AluraGeek API - Desarrollado con Express y MongoDB</p>
-                </div>
-            </div>
-        </footer>
+            </footer>
+        </div>
     </body>
 </html>
-
