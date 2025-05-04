@@ -7,5 +7,5 @@ export const getTokenCookieConfig = (maxAge) => ({
     httpOnly: true,
     secure: NODE_ENV === "production",
     maxAge,
-    sameSite: "lax",
+    sameSite: "none",
 });
