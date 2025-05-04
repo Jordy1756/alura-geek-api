@@ -67,7 +67,8 @@ export const logoutUser = async (req, res) => {
 
         res.status(201).json({ message: "Sesión cerrada exitosamente" });
     } catch (error) {
-        throw new InternalServerError("Error interno", "Error al cerrar sesión");
+        res.status(500).json({ name: error, message: error });
+        // throw new InternalServerError("Error interno", "Error al cerrar sesión");
     }
 };
 
