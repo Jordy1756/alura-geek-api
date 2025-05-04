@@ -53,8 +53,17 @@ export const loginUser = async (req, res) => {
 
 export const logoutUser = async (req, res) => {
     try {
-        res.clearCookie("access_token");
-        res.clearCookie("refresh_token");
+        res.clearCookie("access_token", {
+            secure: NODE_ENV === "production",
+            sameSite: "none",
+            httpOnly: true,
+        });
+
+        res.clearCookie("refresh_token", {
+            secure: NODE_ENV === "production",
+            sameSite: "none",
+            httpOnly: true,
+        });
 
         res.status(201).json({ message: "Sesión cerrada exitosamente" });
     } catch (error) {
