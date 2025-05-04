@@ -15,7 +15,7 @@ getConnection();
 
 const app = express();
 app.disable("x-powered-by");
-app.use(cors({ origin: "https://jordy1756.github.io", credentials: true }));
+app.use(cors({ origin: ["http://localhost:5501", "https://jordy1756.github.io"], credentials: true }));
 
 app.use(json());
 app.use(cookieParser());
