@@ -15,12 +15,7 @@ getConnection();
 
 const app = express();
 app.disable("x-powered-by");
-app.use(
-    cors({
-        origin: "http://localhost:5501",
-        credentials: true,
-    })
-);
+app.use(cors({ origin: ["http://localhost:5501", "https://jordy1756.github.io/alura-geek/"], credentials: true }));
 
 app.use(json());
 app.use(cookieParser());
