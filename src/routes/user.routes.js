@@ -7,7 +7,7 @@ export const createUserRouter = () => {
 
     router.post("/register-user", registerUser);
     router.post("/login-user", loginUser);
-    router.post("/logout-user", authMiddleware, logoutUser);
+    router.post("/logout-user", logoutUser);
     router.post("/get-auth-status", authMiddleware, getAuthStatus);
 
     return router;
