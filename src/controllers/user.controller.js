@@ -53,24 +53,21 @@ export const loginUser = async (req, res) => {
 
 export const logoutUser = async (req, res) => {
     try {
-        res.clearCookie("access_token", {
+        const cookieOptions = {
             secure: NODE_ENV === "production",
             sameSite: "none",
             httpOnly: true,
-        });
+        };
 
-        res.clearCookie("refresh_token", {
-            secure: NODE_ENV === "production",
-            sameSite: "none",
-            httpOnly: true,
-        });
+        res.clearCookie("access_token", cookieOptions);
+        res.clearCookie("refresh_token", cookieOptions);
 
         res.status(201).json({ message: "Sesión cerrada exitosamente" });
     } catch (error) {
-        res.status(500).json({ name: error, message: error });
-        // throw new InternalServerError("Error interno", "Error al cerrar sesión");
+        throw new InternalServerError("Error interno", "Error al cerrar sesión");
     }
 };
+
 
 export const getAuthStatus = (req, res) => {
     res.status(201).json({ isAuthenticated: Boolean(req.cookies.access_token) });
