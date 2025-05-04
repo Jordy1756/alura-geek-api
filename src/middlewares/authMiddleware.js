@@ -1,6 +1,6 @@
 import { REFRESH_SECRET_KEY, SECRET_KEY } from "../config/environment.js";
 import { UnauthorizedError } from "../utils/errorHandler.js";
-import { getTokenCookieConfig, MAX_AGE_ACCESS_TOKEN_COOKIE } from "../utils/handleCookies.js";
+import { getCreateTokenCookieOptions, MAX_AGE_ACCESS_TOKEN_COOKIE } from "../utils/handleCookies.js";
 import { generateAccessToken, verifyToken } from "../utils/handleJWT.js";
 
 export const authMiddleware = (req, res, next) => {
@@ -22,7 +22,12 @@ export const authMiddleware = (req, res, next) => {
 
         const user = verifyToken(refreshToken, REFRESH_SECRET_KEY);
         const paylod = { id: user.id, email: user.email };
-        res.cookie("access_token", generateAccessToken(paylod), getTokenCookieConfig(MAX_AGE_ACCESS_TOKEN_COOKIE));
+        
+        res.cookie(
+            "access_token",
+            generateAccessToken(paylod),
+            getCreateTokenCookieOptions(MAX_AGE_ACCESS_TOKEN_COOKIE)
+        );
         req.session = { user };
     } catch (error) {
         throw error;

@@ -1,7 +1,8 @@
 import User from "../models/User.js";
 import { ConflictError, InternalServerError, ValidationError } from "../utils/errorHandler.js";
 import {
-    getTokenCookieConfig,
+    getClearTokenCookieOptions,
+    getCreateTokenCookieOptions,
     MAX_AGE_ACCESS_TOKEN_COOKIE,
     MAX_AGE_REFRESH_TOKEN_COOKIE,
 } from "../utils/handleCookies.js";
@@ -42,8 +43,16 @@ export const loginUser = async (req, res) => {
 
         const paylod = { id: user._id, email };
 
-        res.cookie("access_token", generateAccessToken(paylod), getTokenCookieConfig(MAX_AGE_ACCESS_TOKEN_COOKIE));
-        res.cookie("refresh_token", generateRefreshToken(paylod), getTokenCookieConfig(MAX_AGE_REFRESH_TOKEN_COOKIE));
+        res.cookie(
+            "access_token",
+            generateAccessToken(paylod),
+            getCreateTokenCookieOptions(MAX_AGE_ACCESS_TOKEN_COOKIE)
+        );
+        res.cookie(
+            "refresh_token",
+            generateRefreshToken(paylod),
+            getCreateTokenCookieOptions(MAX_AGE_REFRESH_TOKEN_COOKIE)
+        );
 
         return res.status(201).json(user);
     } catch (error) {
@@ -53,21 +62,14 @@ export const loginUser = async (req, res) => {
 
 export const logoutUser = async (req, res) => {
     try {
-        const cookieOptions = {
-            secure: NODE_ENV === "production",
-            sameSite: "none",
-            httpOnly: true,
-        };
-
-        res.clearCookie("access_token", cookieOptions);
-        res.clearCookie("refresh_token", cookieOptions);
+        res.clearCookie("access_token", getClearTokenCookieOptions());
+        res.clearCookie("refresh_token", getClearTokenCookieOptions());
 
         res.status(201).json({ message: "Sesión cerrada exitosamente" });
     } catch (error) {
         throw new InternalServerError("Error interno", "Error al cerrar sesión");
     }
 };
-
 
 export const getAuthStatus = (req, res) => {
     res.status(201).json({ isAuthenticated: Boolean(req.cookies.access_token) });
