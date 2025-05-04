@@ -1,0 +1,117 @@
+.endpoint__card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--neutral-50);
+    border-radius: var(--border-radius-out);
+}
+
+.endpoint__card > summary {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    background-color: var(--neutral-50);
+    cursor: pointer;
+}
+
+.endpoint__card > summary > div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.endpoint__card > summary > .endpoint__method > span {
+    font-weight: 500;
+    color: var(--neutral-50);
+    padding: 1rem;
+    width: 100px;
+    text-align: center;
+}
+
+.endpoint__card > summary > .endpoint__method > .get {
+    background-color: var(--info-500);
+}
+
+.endpoint__card > summary > .endpoint__method > .post {
+    background-color: var(--success-500);
+}
+
+.endpoint__card > summary > .endpoint__method > .put {
+    background-color: var(--warning-500);
+}
+
+.endpoint__card > summary > .endpoint__method > .delete {
+    background-color: var(--error-500);
+}
+
+.endpoint__card > summary > .endpoint__method > h3 {
+    font-size: var(--text-size-base);
+}
+
+.endpoint__card > summary > .icons__container {
+    padding: calc(1rem - 4px);
+}
+
+.endpoint__card > summary > .icons__container > .icon.unlock {
+    background-image: url("../../assets/icons/unlock.svg");
+}
+
+.endpoint__card > summary > .icons__container > .icon.lock {
+    background-image: url("../../assets/icons/lock.svg");
+}
+
+.endpoint__card > summary > .icons__container > .icon.arrow {
+    background-image: url("../../assets/icons/arrow.svg");
+    transition: transform 0.3s ease-in-out;
+}
+
+.endpoint__card[open] > summary > .icons__container > .icon.arrow {
+    transform: rotate(90deg);
+}
+
+.endpoint__card > section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+    border-top: 1px solid var(--neutral-300);
+}
+
+.endpoint__card > section > p {
+    color: var(--neutral-700);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.endpoint__card > section > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background-color: var(--neutral-100);
+    padding: 0.75rem;
+    border-radius: var(--border-radius-in);
+    border-left: 3px solid var(--primary-500);
+}
+
+.endpoint__card > section > div > h4 {
+    font-size: var(--text-size-base);
+    font-weight: 500;
+}
+
+.endpoint__card > section > div > p {
+    font-size: 0.9rem;
+    font-weight: 200;
+}
+
+.endpoint__card > footer {
+    padding: 1rem;
+    background-color: var(--neutral-50);
+    border-top: 1px solid var(--neutral-200);
+    color: var(--neutral-800);
+}
+
+.endpoint__card > footer > span {
+    font-size: 0.85rem;
+    background-color: var(--neutral-200);
+    padding: 1px 10px;
+    border-radius: var(--border-radius-in);
+}

@@ -1,0 +1,28 @@
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--neutral-50);
+}
+
+.header > nav {
+    display: flex;
+    align-items: center;
+    width: min(var(--max-width), 100%);
+}
+
+.header > nav {
+    display: flex;
+}
+
+.header > nav > a {
+    display: flex;
+    max-width: 150px;
+}
+
+.header > nav > a > img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}

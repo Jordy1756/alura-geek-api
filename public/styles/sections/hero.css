@@ -1,0 +1,9 @@
+.hero__section {
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+}
+
+.hero__section > h1 {
+    font-size: var(--text-size-large);
+}

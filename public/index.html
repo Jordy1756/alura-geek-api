@@ -5,12 +5,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>AluraGeek API</title>
         <link rel="icon" href="./assets/images/logo.ico" type="image/svg+xml" />
-        <link rel="stylesheet" href="./css/reset.css" />
-        <link rel="stylesheet" href="./css/styles.css" />
+        <link rel="stylesheet" href="./styles/bases/reset.css" />
+        <link rel="stylesheet" href="./styles/bases/styles.css" />
+        <link rel="stylesheet" href="./styles/components/header.css" />
+        <link rel="stylesheet" href="./styles/components/endpoint-card.css" />
+        <link rel="stylesheet" href="./styles/components/footer.css" />
+        <link rel="stylesheet" href="./styles/sections/hero.css" />
+        <link rel="stylesheet" href="./styles/sections/endpoints.css" />
+        <link rel="stylesheet" href="./styles/sections/example.css" />
+        <link rel="stylesheet" href="./styles/sections/environment.css" />
     </head>
     <body>
         <div class="root">
-            <header>
+            <header class="header">
                 <nav>
                     <a href="#" target="_blank">
                         <img src="./assets/images/logo.svg" alt="AluraGeek Logo" />
@@ -29,41 +36,63 @@
                 <section class="endpoints__section">
                     <h2>Endpoints Disponibles</h2>
                     <div>
-                        <article>
-                            <header>
-                                <span class="endpoint__method get">GET</span>
-                                <span class="endpoint__path">/api/article/get-some-articles</span>
-                            </header>
+                        <details class="endpoint__card">
+                            <summary>
+                                <div class="endpoint__method">
+                                    <span class="get">GET</span>
+                                    <h3>/api/article/get-some-articles</h3>
+                                </div>
+                                <div class="icons__container">
+                                    <span class="icon unlock"></span>
+                                    <span class="icon arrow"></span>
+                                </div>
+                            </summary>
                             <section>
                                 <p>Obtiene una selección aleatoria de artículos agrupados por categorías.</p>
                                 <div>
                                     <h4>Parámetros de consulta:</h4>
-                                    <code>categoryLimit</code>: Número de categorías a devolver<br />
-                                    <code>articlesLimit</code>: Número de artículos por categoría
+                                    <p><code>categoryLimit</code>: Número de categorías a devolver</p>
+                                    <p><code>articlesLimit</code>: Número de artículos por categoría</p>
                                 </div>
                             </section>
-                            <footer><span class="icon__unlock"></span> No requiere autenticación</footer>
-                        </article>
-                        <article>
-                            <header>
-                                <span class="endpoint__method get">GET</span>
-                                <span class="endpoint__path">/api/article/search-articles</span>
-                            </header>
+                            <footer>
+                                <span>No requiere autenticación</span>
+                            </footer>
+                        </details>
+                        <details class="endpoint__card">
+                            <summary>
+                                <div class="endpoint__method">
+                                    <span class="get">GET</span>
+                                    <h3>/api/article/search-articles</h3>
+                                </div>
+                                <div class="icons__container">
+                                    <span class="icon unlock"></span>
+                                    <span class="icon arrow"></span>
+                                </div>
+                            </summary>
                             <section>
                                 <p>Busca artículos por nombre con coincidencia parcial.</p>
                                 <div>
                                     <h4>Parámetros de consulta:</h4>
-                                    <code>query</code>: Texto a buscar<br />
-                                    <code>articlesLimit</code>: Límite de resultados a devolver
+                                    <p><code>query</code>: Texto a buscar</p>
+                                    <p><code>articlesLimit</code>: Límite de resultados a devolver</p>
                                 </div>
                             </section>
-                            <footer><span class="icon__unlock"></span> No requiere autenticación</footer>
-                        </article>
-                        <article>
-                            <header>
-                                <span class="endpoint__method post">POST</span>
-                                <span class="endpoint__path">/api/user/register-user</span>
-                            </header>
+                            <footer>
+                                <span>No requiere autenticación</span>
+                            </footer>
+                        </details>
+                        <details class="endpoint__card">
+                            <summary>
+                                <div class="endpoint__method">
+                                    <span class="post">POST</span>
+                                    <h3>/api/user/register-user</h3>
+                                </div>
+                                <div class="icons__container">
+                                    <span class="icon unlock"></span>
+                                    <span class="icon arrow"></span>
+                                </div>
+                            </summary>
                             <section>
                                 <p>Registra un nuevo usuario en el sistema.</p>
                                 <div>
@@ -74,13 +103,21 @@
 }</code></pre>
                                 </div>
                             </section>
-                            <footer><span class="icon__unlock"></span> No requiere autenticación</footer>
-                        </article>
-                        <article>
-                            <header>
-                                <span class="endpoint__method post">POST</span>
-                                <span class="endpoint__path">/api/user/login-user</span>
-                            </header>
+                            <footer>
+                                <span>No requiere autenticación</span>
+                            </footer>
+                        </details>
+                        <details class="endpoint__card">
+                            <summary>
+                                <div class="endpoint__method">
+                                    <span class="post">POST</span>
+                                    <h3>/api/user/login-user</h3>
+                                </div>
+                                <div class="icons__container">
+                                    <span class="icon unlock"></span>
+                                    <span class="icon arrow"></span>
+                                </div>
+                            </summary>
                             <section>
                                 <p>Inicia sesión y obtiene tokens de autenticación.</p>
                                 <div>
@@ -91,13 +128,21 @@
 }</code></pre>
                                 </div>
                             </section>
-                            <footer><span class="icon__unlock"></span> No requiere autenticación</footer>
-                        </article>
-                        <article>
-                            <header>
-                                <span class="endpoint__method post">POST</span>
-                                <span class="endpoint__path">/api/article/insert-article</span>
-                            </header>
+                            <footer>
+                                <span>No requiere autenticación</span>
+                            </footer>
+                        </details>
+                        <details class="endpoint__card">
+                            <summary>
+                                <div class="endpoint__method">
+                                    <span class="post">POST</span>
+                                    <h3>/api/article/insert-article</h3>
+                                </div>
+                                <div class="icons__container">
+                                    <span class="icon lock"></span>
+                                    <span class="icon arrow"></span>
+                                </div>
+                            </summary>
                             <section>
                                 <p>Crea un nuevo artículo en la base de datos.</p>
                                 <div>
@@ -111,15 +156,27 @@
 }</code></pre>
                                 </div>
                             </section>
-                            <footer><span class="icon__lock"></span> Requiere autenticación</footer>
-                        </article>
-                        <article>
-                            <header>
-                                <span class="endpoint__method put">PUT</span>
-                                <span class="endpoint__path">/api/article/update-article/:articleId</span>
-                            </header>
+                            <footer>
+                                <span>Requiere autenticación</span>
+                            </footer>
+                        </details>
+                        <details class="endpoint__card">
+                            <summary>
+                                <div class="endpoint__method">
+                                    <span class="put">PUT</span>
+                                    <h3>/api/article/update-article/:articleId</h3>
+                                </div>
+                                <div class="icons__container">
+                                    <span class="icon lock"></span>
+                                    <span class="icon arrow"></span>
+                                </div>
+                            </summary>
                             <section>
                                 <p>Actualiza un artículo existente por su ID.</p>
+                                <div>
+                                    <h4>Parámetros de ruta:</h4>
+                                    <p><code>articleId</code>: ID del artículo a eliminar</p>
+                                </div>
                                 <div>
                                     <h4>Cuerpo de la solicitud:</h4>
                                     <pre><code>{
@@ -131,42 +188,67 @@
 }</code></pre>
                                 </div>
                             </section>
-                            <footer><span class="icon__lock"></span> Requiere autenticación</footer>
-                        </article>
-                        <article>
-                            <header>
-                                <span class="endpoint__method delete">DELETE</span>
-                                <span class="endpoint__path">/api/article/delete-article/:articleId</span>
-                            </header>
+                            <footer>
+                                <span>Requiere autenticación</span>
+                            </footer>
+                        </details>
+                        <details class="endpoint__card">
+                            <summary>
+                                <div class="endpoint__method">
+                                    <span class="delete">DELETE</span>
+                                    <h3>/api/article/delete-article/:articleId</h3>
+                                </div>
+                                <div class="icons__container">
+                                    <span class="icon lock"></span>
+                                    <span class="icon arrow"></span>
+                                </div>
+                            </summary>
                             <section>
                                 <p>Elimina un artículo existente por su ID.</p>
-                                <div class="path-params">
+                                <div>
                                     <h4>Parámetros de ruta:</h4>
-                                    <code>articleId</code>: ID del artículo a eliminar
+                                    <p><code>articleId</code>: ID del artículo a eliminar</p>
                                 </div>
                             </section>
-                            <footer><span class="icon__lock"></span> Requiere autenticación</footer>
-                        </article>
-                        <article>
-                            <header>
-                                <span class="endpoint__method get">GET</span>
-                                <span class="endpoint__path">/api/article/get-recommended-articles/:articleId</span>
-                            </header>
+                            <footer>
+                                <span>Requiere autenticación</span>
+                            </footer>
+                        </details>
+                        <details class="endpoint__card">
+                            <summary>
+                                <div class="endpoint__method">
+                                    <span class="get">GET</span>
+                                    <h3>/api/article/get-recommended-articles/:articleId</h3>
+                                </div>
+                                <div class="icons__container">
+                                    <span class="icon unlock"></span>
+                                    <span class="icon arrow"></span>
+                                </div>
+                            </summary>
                             <section>
                                 <p>Obtiene artículos recomendados basados en un artículo específico.</p>
                                 <div>
                                     <h4>Parámetros de consulta:</h4>
-                                    <code>categoryLimit</code>: Número de categorías a considerar<br />
-                                    <code>articlesLimit</code>: Número de artículos por categoría
+                                    <p><code>articleId</code>: ID del artículo para que no lo recomiende</p>
+                                    <p><code>categoryLimit</code>: Número de categorías a considerar</p>
+                                    <p><code>articlesLimit</code>: Número de artículos por categoría</p>
                                 </div>
                             </section>
-                            <footer><span class="icon__unlock"></span> No requiere autenticación</footer>
-                        </article>
-                        <article>
-                            <header>
-                                <span class="endpoint__method post">POST</span>
-                                <span class="endpoint__path">/api/comment/insert-comment</span>
-                            </header>
+                            <footer>
+                                <span>No requiere autenticación</span>
+                            </footer>
+                        </details>
+                        <details class="endpoint__card">
+                            <summary>
+                                <div class="endpoint__method">
+                                    <span class="post">POST</span>
+                                    <h3>/api/comment/insert-comment</h3>
+                                </div>
+                                <div class="icons__container">
+                                    <span class="icon unlock"></span>
+                                    <span class="icon arrow"></span>
+                                </div>
+                            </summary>
                             <section>
                                 <p>Añade un nuevo comentario.</p>
                                 <div>
@@ -177,11 +259,12 @@
 }</code></pre>
                                 </div>
                             </section>
-                            <footer><span class="icon__unlock"></span> No requiere autenticación</footer>
-                        </article>
+                            <footer>
+                                <span>No requiere autenticación</span>
+                            </footer>
+                        </details>
                     </div>
                 </section>
-
                 <section class="example__section">
                     <h2>Ejemplo de Uso</h2>
                     <div>
@@ -236,7 +319,7 @@
                     </ol>
                 </section>
             </main>
-            <footer>
+            <footer class="footer">
                 <div>
                     <p>&copy; 2025 Yordi Castro Rojas - Alura Geek API</p>
                 </div>

@@ -1,0 +1,29 @@
+.env__section > ol {
+    counter-reset: env-counter;
+    margin-left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.env__section > ol > li::before {
+    content: counter(env-counter) ".";
+    position: absolute;
+    left: -1.5rem;
+    top: 0;
+    color: var(--primary-500);
+    font-weight: 600;
+}
+
+.env__section > ol > li {
+    counter-increment: env-counter;
+    position: relative;
+    padding-left: 0.5rem;
+    line-height: 1.5;
+}
+
+.env__section > ol > li.env_item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
