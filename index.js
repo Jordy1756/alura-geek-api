@@ -26,3 +26,5 @@ app.use(errorMiddleware);
 app.get("/", (req, res) => res.sendFile(path.join(__dirname, "public", "index.html")));
 
 app.listen(PORT || 5000, () => console.log(`Running on http://localhost:${PORT || 5000}`));
+
+console.log("aksjdn")
