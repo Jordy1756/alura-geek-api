@@ -54,7 +54,9 @@ export const loginUser = async (req, res) => {
             getCreateTokenCookieOptions(MAX_AGE_REFRESH_TOKEN_COOKIE)
         );
 
-        return res.status(201).json(user);
+        user.password = "";
+
+        return res.status(200).json(user);
     } catch (error) {
         throw error;
     }
@@ -65,12 +67,16 @@ export const logoutUser = async (req, res) => {
         res.clearCookie("access_token", getClearTokenCookieOptions());
         res.clearCookie("refresh_token", getClearTokenCookieOptions());
 
-        res.status(201).json({ message: "Sesión cerrada exitosamente" });
+        res.status(204).json({ message: "Sesión cerrada exitosamente" });
     } catch (error) {
         throw new InternalServerError("Error interno", "Error al cerrar sesión");
     }
 };
 
 export const getAuthStatus = (req, res) => {
-    res.status(201).json({ isAuthenticated: Boolean(req.cookies.access_token) });
+    try {
+        res.status(200).json({ isAuthenticated: Boolean(req.cookies.access_token) });
+    } catch (error) {
+        throw error;
+    }
 };

@@ -5,10 +5,10 @@ import { authMiddleware } from "../middlewares/authMiddleware.js";
 export const createUserRouter = () => {
     const router = Router();
 
-    router.post("/register-user", registerUser);
-    router.post("/login-user", loginUser);
-    router.post("/logout-user", logoutUser);
-    router.post("/get-auth-status", authMiddleware, getAuthStatus);
+    router.post("", registerUser);
+    router.post("/session", loginUser);
+    router.delete("/session", authMiddleware, logoutUser);
+    router.get("/me", authMiddleware, getAuthStatus);
 
     return router;
 };

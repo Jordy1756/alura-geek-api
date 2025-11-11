@@ -11,7 +11,7 @@ export const insertCategory = async (req, res) => {
     }
 };
 
-export const getAllCategories = async (req, res) => {
+export const getCategories = async (req, res) => {
     try {
         return res.status(200).json(await Category.find());
     } catch (error) {

@@ -11,7 +11,7 @@ export const insertComment = async (req, res) => {
     }
 };
 
-export const getAllComments = async (req, res) => {
+export const getComments = async (req, res) => {
     try {
         return res.status(200).json(await Comment.find());
     } catch (error) {

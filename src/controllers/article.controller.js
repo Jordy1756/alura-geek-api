@@ -60,30 +60,41 @@ export const deleteArticle = async (req, res) => {
     }
 };
 
-export const getSomeArticles = async (req, res) => {
+export const getArticles = async (req, res) => {
     try {
-        const { categoryLimit, articlesLimit } = req.query;
+        const { page = 1, limit = 10, categoryId, q: query } = req.query;
 
-        const randomCategories = await Category.aggregate([{ $sample: { size: parseInt(categoryLimit) } }]);
+        const pageNum = Math.max(1, parseInt(page));
+        const limitNum = Math.min(10, Math.max(1, parseInt(limit)));
+        const skip = (pageNum - 1) * limitNum;
+        const matchConditions = {};
 
-        const result = [];
+        if (categoryId) matchConditions.categories = { $in: [generateObjectId(categoryId)] };
+        if (query) matchConditions.name = { $regex: query, $options: "i" };
 
-        for (const category of randomCategories) {
-            const randomArticles = await Article.aggregate([
-                { $match: { categories: category._id } },
-                { $sample: { size: parseInt(articlesLimit) } },
+        const [articles, totalDocuments] = await Promise.all([
+            await Article.aggregate([
+                { $match: matchConditions },
+                { $skip: skip },
+                { $limit: limitNum },
                 { $addFields: { price: { $toDouble: "$price" } } },
-            ]);
+            ]),
+            await Article.countDocuments(matchConditions),
+        ]);
 
-            if (randomArticles.length <= 0) continue;
+        const totalPages = Math.ceil(totalDocuments / limitNum);
 
-            result.push({
-                category: { id: category._id, name: category.name },
-                articles: randomArticles,
-            });
-        }
-
-        return res.status(200).json({ data: result });
+        return res.status(200).json({
+            data: articles,
+            pagination: {
+                currentPage: pageNum,
+                totalPages,
+                totalItems: totalDocuments,
+                itemsPerPage: limitNum,
+                hasNextPage: pageNum < totalPages,
+                hasPreviousPage: pageNum > 1,
+            },
+        });
     } catch (error) {
         throw error;
     }
@@ -92,80 +103,49 @@ export const getSomeArticles = async (req, res) => {
 export const getRecommendedArticles = async (req, res) => {
     try {
         const { articleId } = req.params;
-        const { categoryLimit, articlesLimit } = req.query;
+        const { page = 1, limit = 10 } = req.query;
 
+        // Convertir a números y validar
+        const pageNum = Math.max(1, parseInt(page));
+        const limitNum = Math.min(100, Math.max(1, parseInt(limit)));
+        const skip = (pageNum - 1) * limitNum;
+
+        // Buscar el artículo actual
         const currentArticle = await Article.findById(generateObjectId(articleId));
 
-        const categoriesToProcess = currentArticle.categories.slice(0, parseInt(categoryLimit));
+        if (!currentArticle) throw new NotFoundError("Artículo no encontrado", "El artículo base no existe");
 
-        const result = [];
-
-        for (const categoryId of categoriesToProcess) {
-            const category = await Category.findById(categoryId);
-
-            if (!category) continue;
-
-            const recommendedArticles = await Article.aggregate([
-                {
-                    $match: {
-                        _id: { $ne: generateObjectId(articleId) },
-                        categories: { $in: [categoryId] },
-                    },
-                },
-                { $sample: { size: parseInt(articlesLimit) } },
-                { $addFields: { price: { $toDouble: "$price" } } },
-            ]);
-
-            if (recommendedArticles.length <= 0) continue;
-
-            result.push({
-                category: { id: category._id, name: category.name },
-                articles: recommendedArticles,
-            });
-        }
-
-        return res.status(200).json({ data: result });
-    } catch (error) {
-        throw error;
-    }
-};
-
-export const getAllArticles = async (req, res) => {
-    try {
-        const { categoryId } = req.params;
-        const { articlesLimit } = req.query;
-
-        const articles = await Article.aggregate([
+        // Buscar artículos con categorías similares, excluyendo el actual
+        const recommendedArticles = await Article.aggregate([
             {
                 $match: {
-                    categories: { $in: [generateObjectId(categoryId)] },
+                    _id: { $ne: generateObjectId(articleId) },
+                    categories: { $in: currentArticle.categories },
                 },
             },
-            { $limit: parseInt(articlesLimit) },
+            { $skip: skip },
+            { $limit: limitNum },
             { $addFields: { price: { $toDouble: "$price" } } },
         ]);
 
-        return res.status(200).json(articles);
-    } catch (error) {
-        throw error;
-    }
-};
+        // Contar total de recomendaciones
+        const totalDocuments = await Article.countDocuments({
+            _id: { $ne: generateObjectId(articleId) },
+            categories: { $in: currentArticle.categories },
+        });
+        const totalPages = Math.ceil(totalDocuments / limitNum);
 
-export const searchArticles = async (req, res) => {
-    try {
-        const { query, articlesLimit } = req.query;
-
-        const articles = await Article.aggregate([
-            {
-                $match: {
-                    name: { $regex: query, $options: "i" },
-                },
+        return res.status(200).json({
+            data: recommendedArticles,
+            pagination: {
+                currentPage: pageNum,
+                totalPages,
+                totalItems: totalDocuments,
+                itemsPerPage: limitNum,
+                hasNextPage: pageNum < totalPages,
+                hasPreviousPage: pageNum > 1,
             },
-            { $limit: parseInt(articlesLimit) },
-            { $addFields: { price: { $toDouble: "$price" } } },
-        ]);
-
-        return res.status(200).json(articles);
+        });
     } catch (error) {
         throw error;
     }

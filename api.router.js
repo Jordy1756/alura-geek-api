@@ -7,10 +7,10 @@ import { createCommmentRouter } from "./src/routes/comment.routes.js";
 export const createAPIRouter = () => {
     const router = Router();
 
-    router.use("/user", createUserRouter());
-    router.use("/article", createArticleRouter());
-    router.use("/category", createCategoryRouter());
-    router.use("/comment", createCommmentRouter());
+    router.use("/users", createUserRouter());
+    router.use("/articles", createArticleRouter());
+    router.use("/categories", createCategoryRouter());
+    router.use("/comments", createCommmentRouter());
 
     return router;
 };

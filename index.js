@@ -15,14 +15,15 @@ getConnection();
 
 const app = express();
 app.disable("x-powered-by");
-app.use(cors({ origin: ["http://localhost:5501", "https://jordy1756.github.io"], credentials: true }));
+// app.use(cors({ origin: ["http://localhost:5501", "https://jordy1756.github.io"], credentials: true }));
+app.use(cors({ origin: "*", credentials: true }));
 
 app.use(json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-app.use("/api", createAPIRouter());
+app.use("/api/v1", createAPIRouter());
 app.use(errorMiddleware);
 
 app.get("/", (req, res) => res.sendFile(path.join(__dirname, "public", "index.html")));
 
-app.listen(PORT || 5000, () => console.log(`Running on http://localhost:${PORT || 5000}`));
+app.listen(PORT || 5000, "0.0.0.0", () => console.log(`Running on http://localhost:${PORT || 5000}`));
