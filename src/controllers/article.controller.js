@@ -62,7 +62,7 @@ export const deleteArticle = async (req, res) => {
 
 export const getArticles = async (req, res) => {
     try {
-        const { page = 1, limit = 10, categoryId, q: query } = req.query;
+        const { page = 1, limit = 10, categoryId, query } = req.query;
 
         const pageNum = Math.max(1, parseInt(page));
         const limitNum = Math.min(10, Math.max(1, parseInt(limit)));
@@ -73,13 +73,13 @@ export const getArticles = async (req, res) => {
         if (query) matchConditions.name = { $regex: query, $options: "i" };
 
         const [articles, totalDocuments] = await Promise.all([
-            await Article.aggregate([
+            Article.aggregate([
                 { $match: matchConditions },
                 { $skip: skip },
                 { $limit: limitNum },
                 { $addFields: { price: { $toDouble: "$price" } } },
             ]),
-            await Article.countDocuments(matchConditions),
+            Article.countDocuments(matchConditions),
         ]);
 
         const totalPages = Math.ceil(totalDocuments / limitNum);
@@ -105,34 +105,32 @@ export const getRecommendedArticles = async (req, res) => {
         const { articleId } = req.params;
         const { page = 1, limit = 10 } = req.query;
 
-        // Convertir a números y validar
         const pageNum = Math.max(1, parseInt(page));
-        const limitNum = Math.min(100, Math.max(1, parseInt(limit)));
+        const limitNum = Math.min(10, Math.max(1, parseInt(limit)));
         const skip = (pageNum - 1) * limitNum;
 
-        // Buscar el artículo actual
         const currentArticle = await Article.findById(generateObjectId(articleId));
 
         if (!currentArticle) throw new NotFoundError("Artículo no encontrado", "El artículo base no existe");
 
-        // Buscar artículos con categorías similares, excluyendo el actual
-        const recommendedArticles = await Article.aggregate([
-            {
-                $match: {
-                    _id: { $ne: generateObjectId(articleId) },
-                    categories: { $in: currentArticle.categories },
+        const [recommendedArticles, totalDocuments] = await Promise.all([
+            Article.aggregate([
+                {
+                    $match: {
+                        _id: { $ne: generateObjectId(articleId) },
+                        categories: { $in: currentArticle.categories },
+                    },
                 },
-            },
-            { $skip: skip },
-            { $limit: limitNum },
-            { $addFields: { price: { $toDouble: "$price" } } },
+                { $skip: skip },
+                { $limit: limitNum },
+                { $addFields: { price: { $toDouble: "$price" } } },
+            ]),
+            Article.countDocuments({
+                _id: { $ne: generateObjectId(articleId) },
+                categories: { $in: currentArticle.categories },
+            }),
         ]);
 
-        // Contar total de recomendaciones
-        const totalDocuments = await Article.countDocuments({
-            _id: { $ne: generateObjectId(articleId) },
-            categories: { $in: currentArticle.categories },
-        });
         const totalPages = Math.ceil(totalDocuments / limitNum);
 
         return res.status(200).json({

@@ -2,7 +2,7 @@ import { Router } from "express";
 import {
     deleteArticle,
     getArticles,
-    // getRecommendedArticles,
+    getRecommendedArticles,
     insertArticle,
     updateArticle,
 } from "../controllers/article.controller.js";
@@ -15,7 +15,7 @@ export const createArticleRouter = () => {
     router.put("/:articleId", authMiddleware, updateArticle);
     router.delete("/:articleId", authMiddleware, deleteArticle);
     router.get("", getArticles);
-    // router.get("/:articleId/recommended", getRecommendedArticles);
+    router.get("/:articleId/recommended", getRecommendedArticles);
 
     return router;
 };
