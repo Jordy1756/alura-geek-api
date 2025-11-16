@@ -13,10 +13,10 @@ export const insertCategory = async (req, res) => {
 
 export const getCategories = async (req, res) => {
     try {
-        const { page = 1, limit = 10 } = req.query;
+        const { page = 1, limit = 1 } = req.query;
 
         const pageNum = Math.max(1, parseInt(page));
-        const limitNum = Math.max(10, parseInt(limit));
+        const limitNum = Math.max(1, parseInt(limit));
         const skip = (pageNum - 1) * limitNum;
 
         const [categories, totalDocuments] = await Promise.all([
@@ -30,11 +30,8 @@ export const getCategories = async (req, res) => {
             data: categories,
             pagination: {
                 currentPage: pageNum,
-                totalPages,
-                totalItems: totalDocuments,
-                itemsPerPage: limitNum,
-                hasNextPage: pageNum < totalPages,
-                hasPreviousPage: pageNum > 1,
+                nextPage: pageNum < totalPages ? pageNum + 1 : null,
+                previousPage: pageNum > 1 ? pageNum - 1 : null,
             },
         });
     } catch (error) {
